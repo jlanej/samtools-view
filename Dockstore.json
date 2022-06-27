@@ -1,0 +1,9 @@
+{
+  "mosdepthWorkflow.bam_or_cram_input": "ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/phase3/data/NA12878/alignment/NA12878.chrom20.ILLUMINA.bwa.CEU.low_coverage.20121211.bam",
+  "mosdepthWorkflow.outputRoot": "NA12878.chrom20.ILLUMINA.bwa.CEU.low_coverage.20121211",
+  "mosdepthWorkflow.ref": "ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/technical/reference/GRCh38_reference_genome/GRCh38_full_analysis_set_plus_decoy_hla.fa",
+  "mosdepthWorkflow.ref_fasta_index": "ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/technical/reference/GRCh38_reference_genome/GRCh38_full_analysis_set_plus_decoy_hla.fa.fai",
+  "mosdepthWorkflow.ref_dict": "ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/technical/reference/GRCh38_reference_genome/GRCh38_full_analysis_set_plus_decoy_hla.fa.dict",
+  "mosdepthWorkflow.bam_or_cram_index": "ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/phase3/data/NA12878/alignment/NA12878.chrom20.ILLUMINA.bwa.CEU.low_coverage.20121211.bam.bai",
+  "mosdepthWorkflow.mem_gb": "4"
+}
