@@ -8,14 +8,6 @@ RUN apt-get update && apt-get -y upgrade && \
 	apt-get clean && apt-get purge && \
 	rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-RUN wget "https://github.com/brentp/mosdepth/releases/download/v0.3.2/mosdepth"
-RUN cp ./mosdepth /usr/local/bin/
-RUN chmod a+x /usr/local/bin/mosdepth
-
-# RUN chmod a+x mosdepth
-
-
-
 WORKDIR /usr/src
 
 RUN wget https://github.com/samtools/samtools/releases/download/1.13/samtools-1.13.tar.bz2 && \
