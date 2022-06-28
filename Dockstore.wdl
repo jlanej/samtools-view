@@ -1,9 +1,10 @@
 version 1.0
-task mosdepth {
+task viewRegion {
     input {
         File bam_or_cram_input
         File bam_or_cram_index
         String outputRoot
+        String region
         File ref
         File ref_fasta_index
         File ref_dict
@@ -15,15 +16,11 @@ task mosdepth {
     }
 
 	command {
-		bash -c "echo ~{bam_or_cram_input}; samtools; [ -f ~{bam_or_cram_input}.crai ] || samtools  index ~{bam_or_cram_input} ; /usr/local/bin/mosdepth -n -t 1 --by 1000 --fasta ~{ref} ~{outputRoot} ~{bam_or_cram_input}"
+		bash -c "echo ~{bam_or_cram_input}; samtools; [ -f ~{bam_or_cram_input}.crai ] || samtools  index ~{bam_or_cram_input} ; samtools view ~{bam_or_cram_input} ~{region} -b -o ~{outputRoot}.extracted.bam"
 	}
 
 	output {
-		File coverageBed = "~{outputRoot}.regions.bed.gz"
-		File globalDistOutput="~{outputRoot}.mosdepth.global.dist.txt"
-		File distOutput="~{outputRoot}.mosdepth.region.dist.txt"
-		File summaryOutput="~{outputRoot}.mosdepth.summary.txt"
-		
+		File extractedBam = "~{outputRoot}.extracted.bam"
 
 	}
 
@@ -38,20 +35,22 @@ task mosdepth {
 	}
 }
 
-workflow mosdepthWorkflow {
+workflow extractRegionWorkflow {
     input {
         File bam_or_cram_input
         File bam_or_cram_index
         String outputRoot
+        String region
         File ref
         File ref_fasta_index
         File ref_dict
         Int mem_gb
     }
-	call mosdepth { 
+	call viewRegion { 
 		input:
 	 bam_or_cram_input=bam_or_cram_input,
 	 bam_or_cram_index=bam_or_cram_index,
+	 region=region,
 	 outputRoot=outputRoot,
 	 ref=ref,
 	 ref_fasta_index=ref_fasta_index,
