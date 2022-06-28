@@ -2,7 +2,6 @@ version 1.0
 task viewRegion {
     input {
         File bam_or_cram_input
-        File bam_or_cram_index
         String outputRoot
         String region
         File ref
@@ -22,6 +21,8 @@ task viewRegion {
 	output {
 		File extractedBam = "~{outputRoot}.extracted.bam"
 
+
+
 	}
 
 	runtime {
@@ -38,7 +39,6 @@ task viewRegion {
 workflow extractRegionWorkflow {
     input {
         File bam_or_cram_input
-        File bam_or_cram_index
         String outputRoot
         String region
         File ref
@@ -49,7 +49,6 @@ workflow extractRegionWorkflow {
 	call viewRegion { 
 		input:
 	 bam_or_cram_input=bam_or_cram_input,
-	 bam_or_cram_index=bam_or_cram_index,
 	 region=region,
 	 outputRoot=outputRoot,
 	 ref=ref,
