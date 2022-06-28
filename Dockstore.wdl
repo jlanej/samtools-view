@@ -8,7 +8,7 @@ task viewRegion {
         File ref_fasta_index
         File ref_dict
         Int mem_gb
-        Int addtional_disk_size = 20 
+        Int addtional_disk_size = 100 
         Int machine_mem_size = 15
    		Int disk_size = ceil(size(bam_or_cram_input, "GB")) + addtional_disk_size
 
