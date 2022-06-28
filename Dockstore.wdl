@@ -15,12 +15,11 @@ task viewRegion {
     }
 
 	command {
-		bash -c "echo ~{bam_or_cram_input}; samtools; [ -f ~{bam_or_cram_input}.crai ] || samtools  index ~{bam_or_cram_input} ; samtools view ~{bam_or_cram_input} ~{region} -b -o ~{outputRoot}.extracted.bam"
+		bash -c "echo ~{bam_or_cram_input}; samtools; samtools view ~{bam_or_cram_input} ~{region} -b -o ~{outputRoot}.extracted.bam"
 	}
 
 	output {
 		File extractedBam = "~{outputRoot}.extracted.bam"
-
 
 
 	}
