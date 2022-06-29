@@ -2,6 +2,7 @@ version 1.0
 task viewRegion {
     input {
         File bam_or_cram_input
+        File bam_or_cram_index=bam_or_cram_input+".crai"
         String outputRoot
         String region
         File ref
