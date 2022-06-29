@@ -16,7 +16,7 @@ task viewRegion {
     }
 
 	command {
-		bash -c "echo ~{bam_or_cram_input}; samtools; samtools view ~{bam_or_cram_input} ~{region} -b -o ~{outputRoot}.extracted.bam"
+		bash -c "echo ~{bam_or_cram_input}; samtools; samtools view --reference $refGenome  ~{ref} ~{bam_or_cram_input} ~{region} -b -o ~{outputRoot}.extracted.bam"
 	}
 
 	output {
