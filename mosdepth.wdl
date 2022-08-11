@@ -15,12 +15,17 @@ task viewRegion {
 
     }
 
+# ./mosdepth -n -t 1 --by 1000 --fasta 1000genomes.grch38.fasta-index/genome.fa 6018628_23153_0_0.by1000 6018628_23153_0_0.cram
 	command {
-		bash -c "echo ~{bam_or_cram_input}; samtools; samtools view --reference ~{ref} ~{bam_or_cram_input} ~{region} -b -o ~{outputRoot}.extracted.bam"
+		bash -c "echo ~{bam_or_cram_input}; mosdepth; mosdepth -n -t 1 --by 1000 --fasta ~{ref} ~{bam_or_cram_input} ~{outputRoot}"
 	}
 
 	output {
-		File extractedBam = "~{outputRoot}.extracted.bam"
+			File coverageBed = "~{outputRoot}.regions.bed.gz"
+		    File coverageBedCSI = "~{outputRoot}.regions.bed.gz.csi"
+            File globalDistOutput="~{outputRoot}.mosdepth.global.dist.txt"
+            File distOutput="~{outputRoot}.mosdepth.region.dist.txt"
+            File summaryOutput="~{outputRoot}.mosdepth.summary.txt"
 
 
 	}
