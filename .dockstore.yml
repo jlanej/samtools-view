@@ -4,3 +4,7 @@ workflows:
      primaryDescriptorPath: /Dockstore.wdl
      testParameterFiles:
          - /Dockstore.json
+     name: samtools-view
+   - subclass: WDL
+     primaryDescriptorPath: /mosdepth.wdl
+     name: mosdepth
