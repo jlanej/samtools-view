@@ -1,10 +1,9 @@
 version 1.0
-task viewRegion {
+task runMosdepth {
     input {
         File bam_or_cram_input
         File bam_or_cram_index=bam_or_cram_input+".crai"
         String outputRoot
-        String region
         File ref
         File ref_fasta_index
         File ref_dict
@@ -15,7 +14,7 @@ task viewRegion {
 
     }
 	command {
-		bash -c "echo ~{bam_or_cram_input}; mosdepth; mosdepth -n -t 1 --by 1000 --fasta ~{ref} ~{bam_or_cram_input} ~{outputRoot}"
+		bash -c "echo ~{bam_or_cram_input}; mosdepth; mosdepth -n -t 1 --by 1000 --fasta ~{ref} ~{outputRoot} ~{bam_or_cram_input}"
 	}
 
 	output {
@@ -43,16 +42,14 @@ workflow extractRegionWorkflow {
     input {
         File bam_or_cram_input
         String outputRoot
-        String region
         File ref
         File ref_fasta_index
         File ref_dict
         Int mem_gb
     }
-	call viewRegion { 
+	call runMosdepth { 
 		input:
 	 bam_or_cram_input=bam_or_cram_input,
-	 region=region,
 	 outputRoot=outputRoot,
 	 ref=ref,
 	 ref_fasta_index=ref_fasta_index,
