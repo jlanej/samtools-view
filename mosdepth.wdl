@@ -14,8 +14,6 @@ task viewRegion {
    		Int disk_size = ceil(size(bam_or_cram_input, "GB")) + addtional_disk_size
 
     }
-
-# ./mosdepth -n -t 1 --by 1000 --fasta 1000genomes.grch38.fasta-index/genome.fa 6018628_23153_0_0.by1000 6018628_23153_0_0.cram
 	command {
 		bash -c "echo ~{bam_or_cram_input}; mosdepth; mosdepth -n -t 1 --by 1000 --fasta ~{ref} ~{bam_or_cram_input} ~{outputRoot}"
 	}
