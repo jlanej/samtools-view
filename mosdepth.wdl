@@ -38,7 +38,7 @@ task runMosdepth {
 	}
 }
 
-workflow extractRegionWorkflow {
+workflow mosdepthWorkflow {
     input {
         File bam_or_cram_input
         String outputRoot
