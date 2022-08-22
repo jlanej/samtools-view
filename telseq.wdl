@@ -1,5 +1,6 @@
 version 1.0
-task runMosdepth {
+
+task runTelseq {
     input {
         File bam_or_cram_input
         File bam_or_cram_index=bam_or_cram_input+".crai"
@@ -14,21 +15,15 @@ task runMosdepth {
 
     }
 	command {
-		bash -c "echo ~{bam_or_cram_input}; mosdepth; mosdepth -n -t 1 --by 1000 --fasta ~{ref} ~{outputRoot} ~{bam_or_cram_input}"
+		bash -c "echo ~{bam_or_cram_input}; telseq;samtools view -T ~{ref} -u ~{bam_or_cram_input} | telseq -r 151 - > ~{outputRoot}.telseq.txt"
 	}
 
 	output {
-			File coverageBed = "~{outputRoot}.regions.bed.gz"
-		    File coverageBedCSI = "~{outputRoot}.regions.bed.gz.csi"
-            File globalDistOutput="~{outputRoot}.mosdepth.global.dist.txt"
-            File distOutput="~{outputRoot}.mosdepth.region.dist.txt"
-            File summaryOutput="~{outputRoot}.mosdepth.summary.txt"
-
-
+			File telseqOutput = "~{outputRoot}.telseq.txt"
 	}
 
 	runtime {
-		docker: "quay.io/jlanej/mosdepth-docker:sha256:6c31a803fad8ed5873cbd856b057039ced23768cf260d7317c57b0f7a9663e11"
+		docker: "quay.io/jlanej/mosdepth-docker:3ab57446d67f81cba88e051afe0f33d63684fdf6f1f54decf6591890f16bc176"
 		memory: mem_gb + "GB"
 		disks: "local-disk " + disk_size + " HDD"
 	}
@@ -38,8 +33,7 @@ task runMosdepth {
 	}
 }
 
-
-workflow mosdepthWorkflow {
+workflow telseqWorkflow {
     input {
         File bam_or_cram_input
         String outputRoot
@@ -48,7 +42,7 @@ workflow mosdepthWorkflow {
         File ref_dict
         Int mem_gb
     }
-	call runMosdepth { 
+	call runTelseq { 
 		input:
 	 bam_or_cram_input=bam_or_cram_input,
 	 outputRoot=outputRoot,

@@ -8,3 +8,6 @@ workflows:
    - subclass: WDL
      primaryDescriptorPath: /mosdepth.wdl
      name: mosdepth
+   - subclass: WDL
+     primaryDescriptorPath: /telseq.wdl
+     name: telseq
