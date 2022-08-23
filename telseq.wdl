@@ -15,7 +15,7 @@ task runTelseq {
 
     }
 	command {
-		bash -c "echo ~{bam_or_cram_input}; telseq;samtools view -T ~{ref} -u ~{bam_or_cram_input} | telseq -r 151 - > ~{outputRoot}.telseq.txt"
+		bash -c "echo ~{bam_or_cram_input}; telseq;samtools view -T ~{ref} -u ~{bam_or_cram_input} | telseq -k 12 -r 151 - > ~{outputRoot}.telseq.txt"
 	}
 
 	output {
