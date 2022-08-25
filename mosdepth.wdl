@@ -28,7 +28,7 @@ task runMosdepth {
 	}
 
 	runtime {
-		docker: "quay.io/jlanej/mosdepth-docker:sha256:6c31a803fad8ed5873cbd856b057039ced23768cf260d7317c57b0f7a9663e11"
+		docker: "quay.io/jlanej/mosdepth-docker:sha256:3ab57446d67f81cba88e051afe0f33d63684fdf6f1f54decf6591890f16bc176"
 		memory: mem_gb + "GB"
 		disks: "local-disk " + disk_size + " HDD"
 	}
