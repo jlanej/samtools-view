@@ -1,5 +1,6 @@
 version 1.0
-task runMosdepth {
+
+task runmosdepth {
     input {
         File bam_or_cram_input
         File bam_or_cram_index=bam_or_cram_input+".crai"
@@ -38,7 +39,6 @@ task runMosdepth {
 	}
 }
 
-
 workflow mosdepthWorkflow {
     input {
         File bam_or_cram_input
@@ -48,7 +48,7 @@ workflow mosdepthWorkflow {
         File ref_dict
         Int mem_gb
     }
-	call runMosdepth { 
+	call runmosdepth { 
 		input:
 	 bam_or_cram_input=bam_or_cram_input,
 	 outputRoot=outputRoot,
@@ -59,4 +59,4 @@ workflow mosdepthWorkflow {
 	}
 }
 
-#	test	
+#		new version
